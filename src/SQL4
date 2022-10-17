@@ -1,0 +1,54 @@
+create table person(
+    id serial primary key ,
+    name varchar (50) not null,
+    age int not null,
+    address varchar (50) not null,
+    carId int references cars(id)
+);
+
+create table cars(
+    carId serial primary key ,
+    carModel varchar (50) not null,
+    carColor varchar (25) not null,
+    carNumber varchar (15) not null
+);
+
+
+insert into cars( carModel, carColor, carNumber)
+values ( 'honda fit','01 KG 312', 'black'),
+       ( 'rolls roys','02 KG 312', 'blue'),
+       ( ' range rover','03 KG 312', 'white'),
+       ( 'honda fit','09 KG 312', 'pink'),
+       ( 'honda fit','12 KG 312', 'red');
+
+
+insert into  person (name, age, address, carId)
+values ('Emil', 18, 'Gragdanskaya 119', 1),
+       ('Murat', 22, 'Kirova 11', 4),
+       ('Asel', 45, 'Gogola 129', 2);
+
+insert into  person (name, age, address )
+values ('Kerim', 18, 'Gragdanskaya 119'),
+       ('Kanat', 22, 'Kirova 11'),
+       ('Mira', 19, 'Mirov 129');
+
+select  p.name, c.carModel,carNumber
+from person p inner join cars c on p.carId=c.id
+where p. age>20;
+
+select  p.name, c.carModel,carNumber
+from person p inner join cars c on p.carId=c.id
+order by p.age desc;
+
+select  p.name, c.carModel,carNumber
+from person p left join cars c on p.carId=c.id;
+
+select  p.name, c.carModel,carNumber
+from person p right join cars c on p.carId=c.id;
+
+select * from person p right join cars c on p.carId = c.id;
+
+
+
+select * from person p full join cars c on p.carId = c.id;
+

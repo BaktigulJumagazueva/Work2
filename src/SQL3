@@ -1,0 +1,44 @@
+create table products(
+    id serial primary key,
+    productName varchar (30) not null,
+    company varchar (20) not null,
+    productCount int default 0,
+    price numeric not null,
+    isDiscounted bool
+);
+
+insert into products (productName, company, productCount , price, isDiscounted)
+values  ('Iphone X', 'Apple', 3, 76000, false),
+        ('Iphone 8', 'Apple', 2, 72000, true),
+        ('Iphone 7', 'Apple', 2, 42000, true),
+        ('Galaxy S9 ', 'Samsung', 2, 46000, false),
+        ('Galaxy S8', 'Samsung', 1, 56000, true),
+        ('Desire 12', 'HST', 5, 28000, true),
+        ('Nokia 9', 'NMD Global', 3, 76000, true);
+select from products;
+
+drop table products;
+select avg(price ) as average from products where company in ('Apple', 'Samsung ');
+select count(*)  from products where company like 'Apple';
+select min(price ) from products;
+select max (price), company from products group by company;
+
+select count(*) as prodCount,
+       sum(productCount) as totalCount,
+       min(price) as minPrice,
+       max(price) as maxPrice,
+       avg(price) as avgPrice
+from products;
+
+select company, count (*) as modelCount
+from products
+group by  company;
+
+select company, avg (price) as modelCount
+from products
+group by  company;
+
+select company, count (*) as modelCount
+from products
+group by  company
+having COUNT(*) >1;

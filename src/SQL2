@@ -1,0 +1,36 @@
+create table products (
+    id serial primary key,
+    productName varchar (30) not null ,
+    manufacturer varchar (20) not null,
+    productAmong integer default 0,
+    price numeric
+);
+
+insert into products (productName, manufacturer, productAmong, price)
+values ('iPhone', 'Apple', 2, 71000),
+       ('iPhone', 'Apple', 3, 56000),
+       ('Galaxy S9', 'Samsung', 6, 57000),
+       ('iPhone s9 plus', 'Samsung', 2, 46000),
+       ('Desire', 'HTS', 3, 26000);
+
+select * from products;
+
+drop table products;
+
+select * from products where manufacturer is not null;
+select * from products where manufacturer= 'Samsung' or price >60000;
+select * from products where productName like 'iPhone%';
+select manufacturer from products;
+select distinct  manufacturer  from products;
+
+select * from products order by productAmong;
+select * from products order by productAmong desc ;
+select productName , price, manufacturer from  products order by manufacturer asc , productName;
+select * from products order by id limit 3;
+select * from products order by id offset 2;
+select * from products order by id;
+select * from products where manufacturer= 'Samsung'or manufacturer='HTS';
+select * from products where manufacturer not in (manufacturer ='Samsung'or manufacturer='HTS');
+select * from products where price between 50000 and 80000;
+
+
